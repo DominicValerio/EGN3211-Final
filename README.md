@@ -154,16 +154,16 @@ int main() {
     struct Person alex;
     
     // Assigning values to alex's members
-    person2.age = 30;
-    person2.height = 180;
+    alex.age = 30;
+    alex.height = 180;
 
     // Accessing and printing the members of alex
-    printf("\nAlex's age: %d years\n", person2.age);
-    printf("Alex's Height: %d cm\n", person2.height);
+    printf("\nAlex's age: %d years\n", alex.age);
+    printf("Alex's Height: %d cm\n", alex.height);
 
     // Accessing and printing the members of bob
-    printf("Bob's Age: %d years\n", person1.age);
-    printf("Bob's Height: %d cm\n", person1.height);
+    printf("Bob's Age: %d years\n", bob.age);
+    printf("Bob's Height: %d cm\n", bob.height);
 
     return 0;
 }
