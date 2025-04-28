@@ -213,8 +213,8 @@ Enum Example
 
 // Define an enum for days of the week
 enum Gender {
-    MALE=0,    // Automatically gets the value 0
-    FEMALE=1,    // Gets the value 1
+    MALE=0,    // Automatically gets the value 0 if not specified then goes up
+    FEMALE=1,    // Assigns the value 1
 };
 
 int main() {
