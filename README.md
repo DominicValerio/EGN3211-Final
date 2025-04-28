@@ -211,7 +211,7 @@ Enum Example
 ```c
 #include <stdio.h>
 
-// Define an enum for days of the week
+// Define an enum for gender
 enum Gender {
     MALE=0,    // Automatically gets the value 0 if not specified then goes up
     FEMALE=1,    // Assigns the value 1
