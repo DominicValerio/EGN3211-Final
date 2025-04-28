@@ -1,4 +1,6 @@
-*Snippets from Slides 11-13, HW 6-9, and ChatGPT examples
+Final on 4/29/25, 4pm-6pm on Tuesday
+
+*Snippets from Slides 11-13, HW 6-9, and ChatGPT.
 
 
 # Prototype Example
@@ -87,6 +89,42 @@ int main() {
 ```
 
 # Union, Enum, Struct
+
+Union  
+```c
+#include <stdio.h>
+
+// Define a union to store different types of data
+union Data {
+    int intValue;
+    float floatValue;
+    char charValue;
+};
+
+int main() {
+    // Declare two variables of the same union type
+    union Data data1, data2;
+
+    // Assign an integer to data1
+    data1.intValue = 42;
+    printf("data1 (intValue): %d\n", data1.intValue);
+
+    // Assign a float to data2 (this will overwrite the value in data2)
+    data2.floatValue = 3.14;
+    printf("data2 (floatValue): %.2f\n", data2.floatValue);
+
+    // Now assign a character to data1 (this will overwrite the value in data1)
+    data1.charValue = 'A';
+    printf("data1 (charValue): %c\n", data1.charValue);
+
+    // Print the values of data2 after modifying data1
+    printf("data2 (after modifying data1): %.2f\n", data2.floatValue);
+
+    return 0;
+}
+
+```
+
 
 # Palindrome Checking Recursive
 
