@@ -224,7 +224,7 @@ int main() {
     switch (bobsGender) {
         case MALE: printf("Bro is a male"); break;
         case FEMALE: printf("Bro is a female"); break;
-        case default: printf("Ayo, bro is not a male or female");
+        default: printf("Ayo, bro is not a male or female");
     }
 
     return 0;
