@@ -222,8 +222,8 @@ int main() {
     enum Gender bobsGender = MALE;
 
     switch (bobsGender) {
-        case MALE: printf("Bro is a male");
-        case FEMALE: printf("Bro is a female");
+        case MALE: printf("Bro is a male"); break;
+        case FEMALE: printf("Bro is a female"); break;
         case default: printf("Ayo, bro is not a male or female");
     }
 
