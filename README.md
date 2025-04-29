@@ -74,10 +74,10 @@ Common File Modes
 |-------|-------------------------------------|
 | "r"   | Read (file must exist)              |
 | "w"   | Write (overwrite/create new)        |
-| "a"   | Append (write at end of file)        |
+| "a"   | Append (write at end of file/create new)        |
 | "r+"  | Read + Write (no overwrite)          |
 | "w+"  | Read + Write (overwrite/create new) |
-| "a+"  | Read + Append                       |
+| "a+"  | Read + Append (create new)                      |
 
 <br></br>
 Write to File Example
@@ -211,11 +211,19 @@ Enum Example
 ```c
 #include <stdio.h>
 
-// Define an enum for gender
+// Define an enum for Gender
 enum Gender {
-    MALE=0,    // Automatically gets the value 0 if not specified then goes up
+    MALE=0,    // Assign the value 0
     FEMALE=1,    // Assigns the value 1
 };
+
+// Define an enum for Color
+enum Color {
+    RED, // automatically equal to 0
+    GREEN, // equal to 1
+    BLUE, // equal to 2
+}
+
 
 int main() {
     // Declare a variable of type enum Gender
@@ -227,10 +235,72 @@ int main() {
         default: printf("Ayo, bro is not a male or female");
     }
 
+    // Declare a variable of type enum Color
+    enum Color bobsFavoriteColor = GREEN;
+    if (favoriteColor != RED) {
+        printf("Bob's favorite color is not red");
+    }
+
     return 0;
 }
 ```
 
+Typedef on Composite Data Types
+-
+```c
+#include <stdio.h>
+
+// Tagged struct with typedef
+typedef struct Person {
+    char name[50];
+    int age;
+} Person;
+
+// Anonymous enum with typedef
+typedef enum {
+    RED,
+    GREEN,
+    BLUE
+} Color;
+
+void printPerson(const Person* p, Color favoriteColor);
+
+int main() {
+    // Now you can refer to the struct and enum without having to say
+    // "struct Person alice" for example
+    Person alice = {"Alice", 30}; 
+    Color favorite = GREEN;
+
+    printPerson(&alice, favorite);
+
+    return 0;
+}
+
+void printPerson(const Person* p, Color favoriteColor) {
+    const char* colorName;
+    switch (favoriteColor) {
+        case RED: colorName = "Red"; break;
+        case GREEN: colorName = "Green"; break;
+        case BLUE: colorName = "Blue"; break;
+        default: colorName = "Unknown";
+    }
+
+    printf("Name: %s\n", p->name);
+    printf("Age: %d\n", p->age);
+    printf("Favorite Color: %s\n", colorName);
+}
+```
+<br></br>
+
+| Type                        | Tagged `struct Person` |Anonymous  `enum Color`        |
+|-------------------------------|------------------------------------------|--------------------------------------|
+| **Typedef alias**             | ✅ `Person`                               | ✅ `Color`                            |
+| **Tag name exists**           | ✅ `struct Person`                        | ❌ No tag available                   |
+| **Can use without typedef**   | ✅ Yes, with `struct Person`              | ❌ No (no enum tag to reference)      |
+| **Forward declaration possible** | ✅ `struct Person;`                    | ❌ Not possible without a tag         |
+| **Common usage**              | Useful when forward declaring or mixing use of `struct Person` and `Person` | Useful when enum is small/simple and forward declaration isn’t needed |
+
+<br></br>
 
 # Palindrome Checking Recursive
 ```c
@@ -292,6 +362,12 @@ int main() {
 
     // Simulate ghost memory: lose the pointer without freeing
     dynamicArray = NULL; // Now the memory is leaked (ghost memory)
+
+    // Another way to cause ghost memory: using malloc multiple times on one pointer
+    int *newArray = (int*)malloc(10 * sizeof(int));
+
+    newArray = (int*)malloc(5 * sizeof(int)); // malloc without freeing the previous pointer
+    free(newArray) // this new one is free'd but the old one still exists without a pointer
 
     // Program continues...
     printf("Static variable: %d\n", staticVar);
@@ -434,3 +510,6 @@ int main() {
 }
 ```
 ⚠️Only works with integer types
+
+⚠️With both methods, if you try to swap the same index (i == j), then it may cause those 
+indicies to have new values.
