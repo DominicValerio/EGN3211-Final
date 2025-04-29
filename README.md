@@ -511,4 +511,4 @@ int main() {
 ```
 ⚠️Only works with integer types
 
-⚠️ Important with both methods: If i == j (i.e. you're trying to swap the same element with itself), both the addition/subtraction and XOR methods may corrupt the value at that index. Always check that i != j before using these techniques.
+⚠️ Important: If i == j (i.e. you're trying to swap the same element with itself), both the addition/subtraction and XOR methods may corrupt the value at that index. Always check that i != j before using these techniques.
